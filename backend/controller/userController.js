@@ -33,22 +33,73 @@ const registerUser = async (req, res) => {
     if (user) {
       const message = `Your OTP is : ${otp}`;
 
-      await sendEmail({
-        email: user.email,
-        subject: 'Welcome to SwfitCart - Your OTP',
-        message
-      });
+      let emailSent = true;
+      try {
+        await sendEmail({
+          email: user.email,
+          subject: 'Welcome to SwiftCart - Your OTP',
+          message
+        });
+      } catch (emailError) {
+        console.error("Failed to send OTP email:", emailError.message);
+        console.log(`[DEVELOPMENT] OTP for ${user.email} is: ${otp}`);
+        emailSent = false;
+      }
 
       res.status(201).json({
         _id: user._id,
         name: user.name,
         email: user.email,
         role: user.role,
-        token: generateToken(user._id)
+        token: generateToken(user._id),
+        emailSent,
+        message: emailSent ? "OTP sent to email" : "Failed to send OTP email, check server console for OTP"
       });
     } else {
       res.status(400).json({ message: 'Invalid user data' });
     }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const verifyOtp = async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+    if (!email || !otp) {
+      return res.status(400).json({ message: "Email and OTP are required" });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (user.verified) {
+      return res.status(400).json({ message: "User is already verified" });
+    }
+
+    if (user.otp !== Number(otp)) {
+      return res.status(400).json({ message: "Invalid OTP" });
+    }
+
+    if (Date.now() > user.otpExpiresIn) {
+      return res.status(400).json({ message: "OTP has expired" });
+    }
+
+    user.verified = true;
+    user.otp = undefined;
+    user.otpExpiresIn = undefined;
+    await user.save();
+
+    res.json({
+      message: "Email verified successfully",
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      token: generateToken(user._id)
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -60,6 +111,9 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (user && (await bcrypt.compare(password, user.password))) {
+      if (!user.verified) {
+        return res.status(401).json({ message: "Please verify your email first" });
+      }
       res.json({
         _id: user._id,
         name: user.name,
@@ -84,4 +138,4 @@ const getUsers = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser, getUsers };
+module.exports = { registerUser, verifyOtp, loginUser, getUsers };
