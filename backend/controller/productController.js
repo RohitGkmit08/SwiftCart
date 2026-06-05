@@ -40,9 +40,30 @@ const createProduct = async (req, res) => {
     try {
         const {name,price, description,stock,category} = req.body;
 
-        if (!name || !price) {
+        if (!name || !price || !description || !stock || !category) {
             return res.status(400).json({
-                message: "Name and price are required"
+                message: "All fields (name, price, description, stock, category) are required"
+            });
+        }
+
+        const parsedPrice = Number(typeof price === 'string' ? price.replace(/,/g, '') : price);
+        const parsedStock = Number(typeof stock === 'string' ? stock.replace(/,/g, '') : stock);
+
+        if (isNaN(parsedPrice)) {
+            return res.status(400).json({
+                message: "Price must be a valid number"
+            });
+        }
+
+        if (isNaN(parsedStock)) {
+            return res.status(400).json({
+                message: "Stock must be a valid number"
+            });
+        }
+
+        if (!req.file) {
+            return res.status(400).json({
+                message: "Product image is required"
             });
         }
 
@@ -58,9 +79,9 @@ const createProduct = async (req, res) => {
 
         const product = new Product({
             name,
-            price,
+            price: parsedPrice,
             description,
-            stock,
+            stock: parsedStock,
             category,
             imageUrl
         });
@@ -73,8 +94,9 @@ const createProduct = async (req, res) => {
         });
 
     } catch (error) {
+        console.error("Error creating product:", error);
         return res.status(500).json({
-            message: "Server error"
+            message: error.message || "Server error"
         });
     }
 };
@@ -93,15 +115,30 @@ const updateProduct = async (req, res) => {
 
         product.name = name || product.name;
         product.description = description || product.description;
-        product.price = price || product.price;
-        product.stock = stock || product.stock;
         product.category = category || product.category;
 
-        if (req.file) {
-            const result = await cloudinary.uploader.upload(
-                req.file.path
-            );
+        if (price !== undefined) {
+            const parsedPrice = Number(typeof price === 'string' ? price.replace(/,/g, '') : price);
+            if (isNaN(parsedPrice)) {
+                return res.status(400).json({
+                    message: "Price must be a valid number"
+                });
+            }
+            product.price = parsedPrice;
+        }
 
+        if (stock !== undefined) {
+            const parsedStock = Number(typeof stock === 'string' ? stock.replace(/,/g, '') : stock);
+            if (isNaN(parsedStock)) {
+                return res.status(400).json({
+                    message: "Stock must be a valid number"
+                });
+            }
+            product.stock = parsedStock;
+        }
+
+        if (req.file) {
+            const result = await cloudinary.uploader.upload(req.file.path);
             product.imageUrl = result.secure_url;
         }
 
