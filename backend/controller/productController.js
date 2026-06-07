@@ -117,23 +117,27 @@ const updateProduct = async (req, res) => {
         product.description = description || product.description;
         product.category = category || product.category;
 
-        if (price !== undefined) {
-            const parsedPrice = Number(typeof price === 'string' ? price.replace(/,/g, '') : price);
-            if (isNaN(parsedPrice)) {
-                return res.status(400).json({
-                    message: "Price must be a valid number"
-                });
-            }
-            product.price = parsedPrice;
+       if(price){
+        const parsedPrice = Number(typeof price === 'string' ? price.replace(/,/g, '') : price);
+
+        if(isNaN(parsedPrice)){
+            return res.status(400).json({
+                message: "invalid price format"
+            })
         }
 
-        if (stock !== undefined) {
+        product.price = parsedPrice;
+       }
+
+       if(stock){
             const parsedStock = Number(typeof stock === 'string' ? stock.replace(/,/g, '') : stock);
+
             if (isNaN(parsedStock)) {
                 return res.status(400).json({
-                    message: "Stock must be a valid number"
+                    message: "Invalid stock"
                 });
             }
+            
             product.stock = parsedStock;
         }
 
