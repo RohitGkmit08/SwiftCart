@@ -7,6 +7,7 @@ const connectDb = require("./config/db");
 const userRoutes = require("./routes/user.routes");
 const productRoutes = require("./routes/product.routes");
 const orderRoutes = require("./routes/order.routes");
+const paymentRoutes = require("./routes/payment.routes");
 
 connectDb();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/api/auth", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/payment", paymentRoutes);
 
 
 app.get("/health", (req, res) => {
