@@ -8,7 +8,7 @@ const userRoutes = require("./routes/user.routes");
 const productRoutes = require("./routes/product.routes");
 const orderRoutes = require("./routes/order.routes");
 const paymentRoutes = require("./routes/payment.routes");
-
+const analyticsRoutes = require("./routes/analytics.routes")
 connectDb();
 
 const app = express();
@@ -20,7 +20,7 @@ app.use("/api/auth", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/payment", paymentRoutes);
-
+app.use("/api/analytics", analyticsRoutes)
 
 app.get("/health", (req, res) => {
     res.send("App is running");
