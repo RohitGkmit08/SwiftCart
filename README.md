@@ -1,29 +1,29 @@
-# SwiftCart
+#  SwiftCart
 
 SwiftCart is a premium full-stack e-commerce web application featuring a robust Node.js/Express backend API, MongoDB database, integrated payments via Razorpay, media storage with Cloudinary, and a React + Vite frontend workspace.
 
 ---
 
-## Key Features
+##  Key Features
 
-*   Secure Authentication:
+*   ** Secure Authentication:
     *   JWT-based authentication with protected routes and role-based access control (`user` vs. `admin`).
     *   Automatic OTP verification via email SMTP for newly registered users.
     *   Password hashing using `bcryptjs`.
-*   Product Management:
+*   ** Product Management:
     *   Full CRUD API for products (Admin only for creation, update, and deletion).
     *   Media upload pipeline integrating `multer` and `Cloudinary` for product images.
     *   Detailed catalog filtering by category, pricing, stock levels, and ratings.
-*   Payment Gateway Integration:
+*   ** Payment Gateway Integration:
     *   Full Razorpay integration.
     *   Secure order creation and robust SHA-256 signature verification.
-*   Order Management & Workflow:
+*   ** Order Management & Workflow:
     *   Create orders with secure items checkout.
     *   Track historical orders per-user.
-    *   Admin controls to update order delivery status (`pending` -> `shipped` ->  `delivered`).
-*   Admin Analytics & Dashboard:
+    *   Admin controls to update order delivery status (`pending` -> `shipped` -> `delivered`).
+*   ** Admin Analytics & Dashboard:
     *   Aggregated metrics for total users, orders count, product catalog size, and gross cumulative revenue.
-*   Pre-Populated Database Seeder:
+*   ** Pre-Populated Database Seeder:
     *   One-click database initialization to set up default products, standard user accounts, and admin logins.
 
 ---
@@ -80,7 +80,7 @@ SwiftCart/
 *   `PUT /api/products/:id` — Edit an existing product's details and/or image (*Admin only, multipart/form-data*).
 *   `DELETE /api/products/:id` — Remove a product from the database (*Admin only*).
 
-### 🛒 Order Management (`/api/orders`)
+### Order Management (`/api/orders`)
 *   `POST /api/orders` — Create a new customer order (*Authenticated only*).
 *   `GET /api/orders/myorders` — Retrieve order history for the logged-in customer (*Authenticated only*).
 *   `GET /api/orders/:id` — Retrieve details of a specific order (*Owner or Admin only*).
