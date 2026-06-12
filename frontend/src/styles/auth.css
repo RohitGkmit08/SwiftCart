@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+.auth-container {
+  background-color: #0a0a0a;
+  color: #e5e5e5;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.auth-container form {
+  background-color: #121212;
+  border: 1px solid #1a3a22; /* Dark green border */
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+}
+
+.auth-container h2 {
+  font-size: 2rem;
+  color: #00ff66; /* Neon green */
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 25px;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: #181818;
+  border: 1px solid #2d2d2d;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.auth-container input:focus {
+  border-color: #00ff66;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.15);
+  background-color: #1c1c1c;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 14px;
+  background-color: #00ff66;
+  border: 1px solid #00ff66;
+  border-radius: 8px;
+  color: #000000;
+  font-size: 1.05rem;
+  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  margin-top: 5px;
+}
+
+.auth-container button:hover:not(:disabled) {
+  background-color: transparent;
+  color: #00ff66;
+  box-shadow: 0 0 15px rgba(0, 255, 102, 0.35);
+}
+
+.auth-container button:disabled {
+  background-color: #333333;
+  border-color: #333333;
+  color: #777777;
+  cursor: not-allowed;
+}
+
+.auth-container p {
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 0;
+  color: #888888;
+  font-size: 0.95rem;
+}
+
+.auth-container p a {
+  color: #00ff66;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.auth-container p a:hover {
+  text-decoration: underline;
+}

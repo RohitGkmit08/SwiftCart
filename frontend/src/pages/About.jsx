@@ -111,7 +111,7 @@ const About = () => {
 
         <div className="profile-section">
           <h2 className="profile-name">Rohit Sinha</h2>
-          <p className="profile-role">Founder & Lead Developer</p>
+          <p className="profile-role">Developer</p>
           
           <div className="links-container">
             <a 
