@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
         </p>
 
         <Link
-          to={`/products/${product._id}`}
+          to={`/product/${product._id}`}
           className="view-details-button"
         >
           View Details
