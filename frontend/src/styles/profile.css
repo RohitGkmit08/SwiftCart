@@ -1,0 +1,303 @@
+.profile-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 80vh;
+}
+
+.profile-container {
+  display: grid;
+  grid-template-columns: 3.5fr 8.5fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* User Card styling */
+.profile-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-dark);
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: var(--shadow-main);
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, var(--accent-green) 0%, #008033 100%);
+  border-radius: 50%;
+  color: #000000;
+  font-size: 2.5rem;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 0 20px rgba(0, 255, 102, 0.3);
+}
+
+.profile-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #ffffff;
+}
+
+.profile-card .email {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  word-break: break-all;
+}
+
+.role-tag {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-dark);
+  margin-bottom: 25px;
+}
+
+.admin-portal-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: transparent;
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green);
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.admin-portal-btn:hover {
+  background-color: var(--accent-green);
+  color: #000000;
+  box-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
+}
+
+/* Orders History panel */
+.orders-panel {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-dark);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: var(--shadow-main);
+}
+
+.orders-panel h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  border-bottom: 1px solid var(--border-dark);
+  padding-bottom: 15px;
+  color: #ffffff;
+}
+
+.orders-loading,
+.orders-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}
+
+.orders-empty p {
+  margin-bottom: 20px;
+}
+
+.orders-empty .shop-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--accent-green);
+  color: #000000;
+  font-weight: 700;
+  border-radius: 6px;
+}
+
+.orders-empty .shop-link:hover {
+  opacity: 0.9;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Single Order Card */
+.order-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-dark);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.order-header {
+  background-color: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-dark);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 0.9rem;
+}
+
+.order-id-label,
+.order-date-label {
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.order-id-val {
+  font-family: monospace;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.order-date-val {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Status Badge Styles */
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.status-pending {
+  color: var(--warning);
+  background-color: rgba(250, 173, 20, 0.1);
+  border: 1px solid rgba(250, 173, 20, 0.2);
+}
+
+.status-badge.status-shipped {
+  color: var(--info);
+  background-color: rgba(24, 144, 255, 0.1);
+  border: 1px solid rgba(24, 144, 255, 0.2);
+}
+
+.status-badge.status-delivered {
+  color: var(--accent-green);
+  background-color: rgba(0, 255, 102, 0.1);
+  border: 1px solid rgba(0, 255, 102, 0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.05);
+}
+
+/* Order Card Body */
+.order-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-products {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-bottom: 1px solid var(--border-dark);
+  padding-bottom: 20px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.order-item .item-img-container {
+  width: 60px;
+  height: 60px;
+  background-color: #161616;
+  border-radius: 6px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border-dark);
+}
+
+.order-item .item-img-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.item-meta h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.item-meta .price-qty {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Order summary metadata below items */
+.order-meta-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  font-size: 0.9rem;
+}
+
+.order-meta-info h5 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.shipping-info p {
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.payment-info .payment-id {
+  color: var(--text-muted);
+  font-family: monospace;
+  margin-bottom: 15px;
+}
+
+.total-amount {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.total-amount span {
+  color: var(--accent-green);
+  font-size: 1.25rem;
+}
+
+@media (max-width: 992px) {
+  .profile-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .order-meta-info {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
