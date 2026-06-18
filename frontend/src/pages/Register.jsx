@@ -30,11 +30,8 @@ const Register = () => {
         throw new Error(data.message || "Registration failed");
       }
 
-      alert("Registration successful!");
-
-      login(data);
-
-      navigate("/");
+      alert("Registration successful! Please enter the OTP sent to your email.");
+      navigate(`/verify-otp?email=${encodeURIComponent(email)}`);
       
     } catch (err) {
       alert(err.message || "Something went wrong");
