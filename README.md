@@ -8,25 +8,6 @@ SwiftCart is a premium, enterprise-ready full-stack e-commerce web application f
 
 SwiftCart follows a decoupled, client-server architecture model. The client layer communicates with the server via standard HTTP REST endpoints, utilizing JWT tokens for stateful authentication.
 
-```mermaid
-graph TD
-    Client[React Client] <--> |Axios / Fetch / JSON| Express[Express Server]
-    Express <--> |Mongoose ODM| Mongo[(MongoDB)]
-    Express <--> |Nodemailer SMTP| Mail[Email OTP]
-    Express <--> |Multer Stream| Cloudinary[Cloudinary CDN]
-    Express <--> |Razorpay SDK| Razorpay[Razorpay Payments]
-    
-    subgraph Frontend State Management
-        Client -.-> Redux[Redux Toolkit: Cart State]
-        Client -.-> Context[AuthContext: User Session]
-    end
-    
-    subgraph Backend Pipeline
-        Express --> Route[Express Router]
-        Route --> Auth[Auth Middleware]
-        Auth --> Admin[Admin Middleware]
-        Admin --> Controller[Controllers]
-    end
 ```
 
 ---
